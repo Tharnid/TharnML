@@ -32,3 +32,6 @@
     Post.objects.order_by('title')
 
     -title would be descending order
+
+    making a urls.py for each project is the best way to ensure your app can be
+    used in other projects
