@@ -35,3 +35,5 @@
 
     making a urls.py for each project is the best way to ensure your app can be
     used in other projects
+
+    how to deploy with WSGI
