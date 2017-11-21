@@ -1,21 +1,29 @@
-.DS_Store
-.env
-.flaskenv
-*.pyc
-*.pyo
-env
-env*
-dist
-build
+*.py[co]
+*.DS_*
+# Packages
 *.egg
 *.egg-info
-_mailinglist
-.tox
-.cache/
-.idea/
+dist
+build
+eggs
+parts
+bin
+var
+sdist
+develop-eggs
+.installed.cfg
 
-# Coverage reports
-htmlcov
+# Installer logs
+pip-log.txt
+
+# Unit test / coverage reports
 .coverage
-.coverage.*
-*,cover
+.tox
+
+#Translations
+*.mo
+
+#Mr Developer
+venv
+*.pyc
+build
