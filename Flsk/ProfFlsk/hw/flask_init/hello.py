@@ -5,13 +5,24 @@ from flask import Flask
 app = Flask(__name__)
 
 @app.route('/')
+def index():
+    return "Bloody Index Page!!!"
 
+@app.route('/user/<username>')
+def show_user(username):
+    # show the user profile
+    return "User " + str(username)
+
+@app.route('/hello')
 def hello_from_flask():
-    import pdb; pdb.set_trace()
-    i = 3
-    i = i + 1
-    visited = i
-    return "You have visited " + str(visited) + " times!!!"
+    return "Hello!!!"
+
+@app.route('/post/<int:post_id>')
+def show_post(post_id):
+    # show post with given id..id must be int
+    return "Post %d" % post_id # str(post_id)
+
+
 
 if __name__ == '__main__':
     host = os.getenv('IP', '0.0.0.0')
