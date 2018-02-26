@@ -1,26 +1,15 @@
 import os
 
-from flask import Flask
+from flask import Flask, request
 
 app = Flask(__name__)
 
-@app.route('/')
-def index():
-    return "Bloody Index Page!!!"
-
-@app.route('/user/<username>')
-def show_user(username):
-    # show the user profile
-    return "User " + str(username)
-
-@app.route('/hello')
-def hello_from_flask():
-    return "Hello!!!"
-
-@app.route('/post/<int:post_id>')
-def show_post(post_id):
-    # show post with given id..id must be int
-    return "Post %d" % post_id # str(post_id)
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    if request.method == 'POST':
+        return 'username is ' + request.values["username"]
+    else:
+        return '<form method="post" action="/login"><input type="text" name="username" /> <p><button type="submit">Submit</button></form>'
 
 
 
