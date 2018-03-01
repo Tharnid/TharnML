@@ -1,6 +1,6 @@
 import os
 
-from flask import Flask, request, render_template, redirect
+from flask import Flask, request, render_template, redirect, url_for, flash
 
 app = Flask(__name__)
 
@@ -9,7 +9,8 @@ def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form['username'], request.form['password']):
-            return "Welcome back, %s" % request.form['username']
+            flash("Successfully Logged In!!!")
+            return redirect(url_for('welcome', username=request.form.get('username')))
         else:
             error = 'Incorrect username and/or password'
     return render_template('login.html', error=error)
@@ -20,8 +21,13 @@ def valid_login(username, password):
     else:
         return False
 
+@app.route('/welcome/<username>')
+def welcome(username):
+    return render_template('welcome.html', username=username)
+
 if __name__ == '__main__':
     host = os.getenv('IP', '0.0.0.0')
     port = int(os.getenv('port', 5000))
     app.debug = True
+    app.secret_key = 'Ylix12Zaur'# encodes sessions
     app.run(host=host, port=port)
