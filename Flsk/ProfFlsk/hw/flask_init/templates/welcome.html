@@ -1,25 +1,7 @@
-<!doctype html>
-<head>
-  <title>Welcome to my App</title>
-</head>
+{% extends "base.html" %}
 
-<body>
+{% block title %}Wecome{% endblock %}
 
-{% with messages = get_flashed_messages() %}
-
-{% if messages %}
-<ul class="flashes">
-  {% for message in messages %}
-  <li>{{ message }}</li>
-  {% endfor %}
-</ul>
-
-{% endif %}
-
-{% endwith %}
-  <p>Welcome, {{ username }}</p>
-
-</body>
-
-
-<html>
+{% block content %}
+<p>Welcome, {{ username }}</p>
+{% endblock %}
