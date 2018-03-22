@@ -1,4 +1,5 @@
 import os
+import pymysql
 
 from flask import Flask, request, render_template, redirect, url_for, flash, session
 app = Flask(__name__)
@@ -22,10 +23,31 @@ def login():
     return render_template('login.html', error=error)
 
 def valid_login(username, password):
-    if username == password:
+    # mysql
+    MYSQL_DATABASE_HOST = os.getenv('IP', '0.0.0.0')
+    MYSQL_DATABASE_USER = 'root'
+    MYSQL_DATABASE_PASSWORD = ''
+    MYSQL_DATABASE_DB = 'my_flask_app'
+    conn = pymysql.connect(
+        host=MYSQL_DATABASE_HOST,
+        user=MYSQL_DATABASE_USER,
+        passwd=MYSQL_DATABASE_PASSWORD,
+        db=MYSQL_DATABASE_DB
+        )
+    cursor = conn.cursor()
+    cursor.execute("SELECT * from minion WHERE username='%s' AND password='%s'" %
+                    (username,password))
+    data = cursor.fetchone()
+
+    if data:
         return True
     else:
         return False
+
+    # if username == password:
+    #     return True
+    # else:
+    #     return False
 
 @app.route('/logout')
 def logout():
@@ -49,5 +71,5 @@ if __name__ == '__main__':
     handler = RotatingFileHandler('error.log', maxBytes=10000, backupCount=1)
     handler.setLevel(logging.INFO)
     app.logger.addHandler(handler)
-    
+
     app.run(host=host, port=port)
