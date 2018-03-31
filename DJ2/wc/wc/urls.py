@@ -23,5 +23,5 @@ from . import views
 
 urlpatterns = [
     path('', views.homepage),
-    path('oatmeal', views.oatmeal)
+    path('count/', views.count, name='count')
 ]
