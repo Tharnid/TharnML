@@ -6,6 +6,9 @@ def homepage(request):
     return render(request, 'home.html', {'hithere':'This is me!!!'})
     # return HttpResponse('Hello, from Django!!!')
 
+def about(request):
+    return render(request, 'about.html')
+
 # def eggs(request):
 #     return HttpResponse('<h1>It is Eggs...how cool is that!!!</h1>')
 
