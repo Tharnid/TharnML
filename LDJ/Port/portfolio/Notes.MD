@@ -27,3 +27,9 @@ grant all privileges on database portfolio to aragoth;
 
 Add Models to admin...duh
 
+source myvenv/bin/activate
+
+dja 
+
+T
+s12
