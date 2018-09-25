@@ -3,9 +3,13 @@
 {% block content %}
 
 {% if error %}
-{{ error }}
+
+<div class="alert alert-danger" role="alert">
+  {{ error }}
+</div>
 <br />
 <br />
+
 {% endif %}
 
 <h3>Sign Up!!!</h3>
